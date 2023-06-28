@@ -1225,4 +1225,6 @@ Answer: Device management is the process of managing access to hardware devices 
 
 
 # Happy learning  & please give a star ⭐  
+![image](https://github.com/ManojKumarPatnaik/Sr.SoftwareEngineerInterviewPrep/assets/69416841/605c580b-798d-408a-9da0-549ff96202eb)
+
 ![image](https://assets.leetcode.com/users/images/5cfe8444-30cf-4882-a87c-54ef5f5820c5_1687108029.48085.gif)
