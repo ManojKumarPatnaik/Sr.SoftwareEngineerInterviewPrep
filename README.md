@@ -1354,8 +1354,101 @@ Durability - ensures that changes to your data made by successfully executed tra
 # 
 <details>
   <summary>spring boot framework</summary>
-  
-  
+
+Normalization is the process of organizing data in a database to eliminate redundancy and dependency, resulting in a more efficient and manageable database. There are various forms of normalization, each with its own requirements and limitations. Here are the various forms of normalization with examples for each with output results:
+
+1. First Normal Form (1NF)
+   To achieve 1NF, each column in a table must have atomic values, meaning that each column must contain a single value, not a list of values. Here's an example of a table that violates 1NF:
+
+```
+orders table
+order_id  | product_ids
+1         | 1, 2, 3
+2         | 4, 5
+```
+
+To convert this table to 1NF, we can create a new table "order_products" that contains each product ID separately, linked to its parent order ID:
+
+```
+orders table
+order_id
+1
+2
+
+order_products table
+order_id | product_id
+1        | 1
+1        | 2
+1        | 3
+2        | 4
+2        | 5
+```
+
+2. Second Normal Form (2NF)
+   To achieve 2NF, each non-key column in a table must be dependent on the entire primary key, not just part of it. Here's an example of a table that violates 2NF:
+
+```
+orders table
+order_id | customer_id | product_id | product_name | price
+1       | 1           | 1          | iPhone       | 1000
+2       | 1           | 2          | iPad         | 800
+3       | 2           | 1          | iPhone       | 1000
+4       | 2           | 3          | MacBook      | 1500
+```
+
+To convert this table to 2NF, we can create two new tables "products" and "customers":
+
+```
+orders table
+order_id | customer_id | product_id
+1       | 1           | 1
+2       | 1           | 2
+3       | 2           | 1
+4       | 2           | 3
+
+products table
+product_id | product_name | price
+1         | iPhone       | 1000
+2         | iPad         | 800
+3         | MacBook      | 1500
+
+customers table
+customer_id
+1
+2
+```
+
+3. Third Normal Form (3NF)
+   To achieve 3NF, each non-key column in a table must be dependent only on the primary key, not on any other non-key columns. Here's an example of a table that violates 3NF:
+
+```
+orders table
+order_id | customer_id | customer_name | customer_email | product_id | product_name | price
+1       | 1           | John          | john@abc.com   | 1          | iPhone       | 1000
+2       | 1           | John          | john@abc.com   | 2          | iPad         | 800
+3       | 2           | Jane          | jane@abc.com   | 1          | iPhone       | 1000
+4       | 2           | Jane          | jane@abc.com   | 3          | MacBook      | 1500
+```
+
+To convert this table to 3NF, we can create a new table "customers" and remove the redundant customer information from the "orders" table:
+
+```
+orders table (after normalization)
+order_id | customer_id | product_id
+1       | 1           | 1
+2       | 1           | 2
+3       | 2           | 1
+4       | 2           | 3
+
+products table (same as before)
+
+customers table
+customer_id | customer_name | customer_email
+1          | John          | john@abc.com
+2          | Jane          | jane@abc.com
+```
+
+These are some examples of how to convert an unnormalized table to 1NF, 2NF, and 3NF by separating data into smaller, related tables. The output results for the normalized tables will depend on the specific data in the original table.
 
 ```
 In Spring Framework, there are two ways to inject dependencies into a class: constructor autowiring and setter autowiring. Here are some guidelines on when to use each approach:
